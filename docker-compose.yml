@@ -6,9 +6,7 @@ services:
     mem_limit: 512m
     restart: unless-stopped
     ports:
-      - 8030:8000
-    depends_on:
-        - db
+      - 8000:8000
     networks:
         - supermercado_estrela
     env_file: .env

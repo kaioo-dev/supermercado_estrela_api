@@ -1,0 +1,43 @@
+name: supermercado-estrela
+services:
+  api:
+    build: .
+    cpus: 0.8
+    mem_limit: 512m
+    restart: unless-stopped
+    ports:
+      - 8030:8000
+    depends_on:
+        - db
+    networks:
+        - supermercado_estrela
+    env_file: .env
+    command: sh -c "uvicorn main:app --host 0.0.0.0 --port 8000"
+  
+  # db:
+  #   image: postgres:16
+  #   restart: always
+  #   ports:
+  #     - "54322:5432"
+  #   container_name: supermercado_estrela_db
+  #   env_file:
+  #     - path: ./.env
+  #       required: true
+  #   environment:
+  #     - POSTGRES_USER=${SUPERMERCADO_ESTRELA_DB_USERNAME?Variable not set}
+  #     - POSTGRES_PASSWORD=${SUPERMERCADO_ESTRELA_DB_PASSWORD?Variable not set}
+  #     - POSTGRES_DB=${SUPERMERCADO_ESTRELA_DB_DATABASE?Variable not set}
+  #     - PGDATA=/var/lib/postgresql/data/pgdata
+  #   volumes:
+  #     - db_volume:/var/lib/postgresql/data/pgdata
+  #   networks:
+  #     - supermercado_estrela
+
+# volumes:
+#   db_volume:
+#     name: supermercado_estrela_api_and_db_volume
+#     external: true
+
+networks:
+  supermercado_estrela:
+    external: false

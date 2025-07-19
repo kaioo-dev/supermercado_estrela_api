@@ -5,3 +5,4 @@ pydantic==2.11.7
 SQLAlchemy==2.0.41
 starlette==0.47.1
 openpyxl==3.1.5
+fbd==2.0.3

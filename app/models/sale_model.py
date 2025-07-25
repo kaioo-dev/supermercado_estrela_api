@@ -18,8 +18,8 @@ class SaleModel(Base):
     total_venda = Column("tota_ven", Numeric(10, 2), nullable=False)
     entrada_venda = Column("entr_ven", Numeric(10, 2), nullable=True)
     vendedor_venda = Column("vend_ven", Integer, ForeignKey("pessoas.codi_pes"), nullable=False)
-    usuario_venda = Column("usa_ven", String(20), nullable=False)
+    usuario_venda = Column("usua_ven", String(20), nullable=False)
 
     # Relacionamentos opcionais
-    cliente = relationship("Pessoa", foreign_keys=[cliente_venda], backref="compras")
-    vendedor = relationship("Pessoa", foreign_keys=[vendedor_venda], backref="vendas_realizadas")
+    cliente = relationship("PersonModel", foreign_keys=[cliente_venda], backref="compras")
+    vendedor = relationship("PersonModel", foreign_keys=[vendedor_venda], backref="vendas_realizadas")
